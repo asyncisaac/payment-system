@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum LedgerEntryType {
+  DEBIT
+  CREDIT
+}
+
+enum JobEffectStatus {
+  executed
+  skipped
+}
+
+model Payment {
+  id             String        @id @default(uuid())
+  userId         String
+  amount         Int
+  status         PaymentStatus @default(PENDING)
+  idempotencyKey String        @unique
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  ledgerEntries LedgerEntry[]
+  events        Event[]
+  jobEffects    JobEffect[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model LedgerEntry {
+  id        String          @id @default(uuid())
+  paymentId String
+  userId    String
+  type      LedgerEntryType
+  amount    Int
+  createdAt DateTime        @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@unique([paymentId, type])
+  @@index([userId])
+  @@index([paymentId])
+  @@index([createdAt])
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  aggregateId String
+  paymentId   String?
+  type        String
+  payload     Json
+  createdAt   DateTime @default(now())
+
+  payment Payment? @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([aggregateId])
+  @@index([paymentId])
+  @@index([createdAt])
+}
+
+model JobEffect {
+  id        String          @id @default(uuid())
+  jobId     String          @unique
+  paymentId String?
+  status    JobEffectStatus
+  createdAt DateTime        @default(now())
+
+  payment Payment? @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@index([paymentId])
+  @@index([createdAt])
+}
+

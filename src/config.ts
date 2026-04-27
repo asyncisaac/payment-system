@@ -12,7 +12,12 @@ const envSchema = z.object({
   GATEWAY_TIMEOUT_RATE: z.coerce.number().min(0).max(1).default(0.15),
   GATEWAY_LATENCY_MS_MIN: z.coerce.number().int().nonnegative().default(100),
   GATEWAY_LATENCY_MS_MAX: z.coerce.number().int().nonnegative().default(800),
-  GATEWAY_TIMEOUT_MS: z.coerce.number().int().positive().default(600)
+  GATEWAY_TIMEOUT_MS: z.coerce.number().int().positive().default(600),
+  GATEWAY_FAIL_FIRST_N: z.coerce.number().int().nonnegative().default(0)
 });
 
-export const env = envSchema.parse(process.env);
+export type Env = z.infer<typeof envSchema>;
+
+export function getEnv(): Env {
+  return envSchema.parse(process.env);
+}

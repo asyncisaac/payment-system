@@ -1,5 +1,7 @@
 import pino from "pino";
-import { env } from "../config.js";
+import { getEnv } from "../config.js";
+
+const env = getEnv();
 
 const transport =
   process.env.NODE_ENV === "production"

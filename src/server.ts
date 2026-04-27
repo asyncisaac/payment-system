@@ -1,7 +1,9 @@
 import { createServer } from "node:http";
-import { env } from "./config.js";
+import { getEnv } from "./config.js";
 import { createApp } from "./app.js";
 import { logger } from "./infra/logger.js";
+
+const env = getEnv();
 
 const app = createApp();
 const server = createServer(app);

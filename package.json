@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "dev:worker": "tsx watch src/workers/index.ts",
+    "dev:web": "npm --prefix web run dev",
     "build": "tsc -p tsconfig.build.json",
+    "build:web": "npm --prefix web run build",
     "start": "node dist/server.js",
     "start:worker": "node dist/workers/index.js",
     "prisma:generate": "prisma generate",

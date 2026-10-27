@@ -13,21 +13,13 @@
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-**[🚀 Live Demo](https://your-demo-url.com)** · **[⭐ Architecture](#-architecture)** · **[🛠️ Run Locally](#-running-locally)** · **[🧪 Tests](#-tests)**
+**[⭐ Architecture](#-architecture)** · **[🛠️ Run Locally](#-running-locally)** · **[🧪 Tests](#-tests)**
 
 </div>
 
 ---
 
-> ⚠️ **Screenshots coming soon.** Replace this section with actual screenshots/GIFs of:
-> - Payment dashboard showing list with status filters
-> - Payment detail with ledger entries side-by-side
-> - Refund button flow
->
-> ```
-> ![Payments Dashboard](https://your-image-host.com/payments-dashboard.png)
-> ![Payment Detail + Ledger](https://your-image-host.com/payment-ledger.png)
-> ```
+> **Screenshots:** Not published yet.
 
 ---
 
@@ -177,15 +169,9 @@ PAYMENT_REFUNDED → { refundTxnId, reason }
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Hosted Demo
 
-> ⚠️ **Deploy first, then fill this in.**
->
-> | Resource | URL |
-> |----------|-----|
-> | Dashboard | `https://your-payments-demo.com` |
-> | API Base | `https://your-payments-demo.com/api` |
-> | Demo user login | `demo@example.com` / `demo1234` |
+A hosted demo and demo login are not published yet. Follow the [local setup](#-running-locally) to run the API, worker, and dashboard.
 
 ---
 
